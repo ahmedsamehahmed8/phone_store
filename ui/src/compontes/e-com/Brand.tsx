@@ -31,30 +31,31 @@ function Brand() {
   console.log(ss);
 
   const { brands, loading } = useAppSelector((state) => state.brand);
-  const s = () => {
-    if (loading === "pending") {
-      return <Lottie animationData={loadingg} />;
-    } else {
-      return null;
-    }
-  };
+
   return (
-    <>
-      {brands.map((e: TT) => {
-        return (
-          <>
-            {s}
-            <button
-              onClick={() => handlebrandname(e.name)}
-              className=" flex flex-col items-center m-10"
-            >
-              <img src={e.photo} alt="sa" className="w-28 h-28" />
-              <div key={e.id}>{e.name}</div>
-            </button>
-          </>
-        );
-      })}
-    </>
+    <div className="  bg-slate-500 flex flex-wrap justify-center">
+      {loading === "pending" ? (
+        <div className=" flex justify-center">
+          <Lottie animationData={loadingg} />
+        </div>
+      ) : (
+        brands.map((e: TT) => {
+          return (
+            <div className="">
+              <button
+                onClick={() => handlebrandname(e.name)}
+                className=" flex  flex-col items-center m-10"
+              >
+                <img src={e.photo} alt="sa" className=" w-28  h-28" />
+                <div className="text-white" key={e.id}>
+                  {e.name}
+                </div>
+              </button>
+            </div>
+          );
+        })
+      )}
+    </div>
   );
 }
 

@@ -2,12 +2,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Mainlayout from "../layout/Mainlayout";
 
-// import Home from "../pages/Home";
-// import Brands from "../pages/Brands";
-// import Products from "../pages/Products";
-// import Card_page from "../pages/Card_page";
-// import Signin from "src/pages/Signin";
-// import Signup from "src/pages/Signup";
 import { lazy, Suspense } from "react";
 
 import Loading from "../compontes/common/ainmation/Loading.tsx";
@@ -17,7 +11,6 @@ import BBrand from "../pages/BBrand.tsx";
 
 const Home = lazy(() => import("../pages/Home"));
 const Brands = lazy(() => import("../pages/Brands"));
-// const Brand = lazy(() => import("../pages/BBrand.tsx"));
 const Products = lazy(() => import("../pages/Products"));
 const Card_page = lazy(() => import("../pages/Card_page"));
 const Signup = lazy(() => import("src/pages/Signup"));
@@ -67,7 +60,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/products",
+        path: "/aboutus",
         element: (
           <Suspense fallback={<Loading />}>
             <Products />,

@@ -1,16 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import Tproducts from "src/types/Tproduct_Slice";
 
-type tt = {
-  brand: {
-    id: number;
-    name: string;
-    brand: string;
-    instok: number;
-    price: number;
-    quantity: number;
-    photo: string;
-  }[];
+type T = {
+  brand: Tproducts;
 };
 
 const actgetonebrand = createAsyncThunk(
@@ -20,7 +13,7 @@ const actgetonebrand = createAsyncThunk(
 
     try {
       const respons = axios
-        .get<tt>(`http://localhost:3000/products?brand=${brandname}`)
+        .get<T>(`http://localhost:3000/products?brand=${brandname}`)
         .then((e) => e.data);
       return respons;
     } catch (error) {

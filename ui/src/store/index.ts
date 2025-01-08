@@ -16,8 +16,6 @@ import {
 } from "redux-persist";
 
 import storage from "redux-persist/lib/storage";
-import { persistStore, persistReducer } from "redux-persist";
-import { brands } from "@fortawesome/fontawesome-svg-core/import.macro";
 
 const persistconfig = {
   key: "root",

@@ -8,10 +8,9 @@ import Total from "@compontes/e-com/Total";
 import Empty from "@compontes/common/ainmation/empty";
 import post_user_checkoutslice from "src/store/user_checkout/act/actuser_checkoutslice";
 import { order_complete_from_card_sclice } from "../store/card/Cardsclice";
-import {
-  order_complete_from_user_checkoutslice,
-  reset_complete_from_user_checkoutslice,
-} from "src/store/user_checkout/user_checkoutslice";
+import { order_complete_from_user_checkoutslice } from "src/store/user_checkout/user_checkoutslice";
+
+import { toast, ToastContainer } from "react-toastify";
 
 function Card_page() {
   const nav = useNavigate();
@@ -25,7 +24,6 @@ function Card_page() {
   const keys = Object.keys(quantity);
 
   const [visible_checkout, setvisible_checkout] = useState("invisible");
-  // const [visible_button, setvisible_button] = useState("");
 
   // to protect the route
   if (!accessToken) {
@@ -36,6 +34,23 @@ function Card_page() {
     return accumulator + item.price * item.quantity;
   }, 0);
   console.log(total);
+
+  const handleclick = () => {
+    dis(post_user_checkoutslice(total));
+    dis(order_complete_from_user_checkoutslice());
+    dis(order_complete_from_card_sclice());
+    nav("/");
+    toast.success("order is completed", {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  };
 
   keys.map((e) => {
     items_full_info.map((ee) => {
@@ -50,16 +65,6 @@ function Card_page() {
     });
   });
 
-  // const handel_button = () => {};
-  // useEffect(() => {
-  //   if (!quantity) {
-  //     setvisible_button("visible");
-  //   } else {
-  //     setvisible_button("invisible");
-  //   }
-  // }, [quantity]);
-  // console.log(quantity);
-
   return (
     <div className="border bg-gray-400 w-screen flex flex-col p-5 gap-5 items-center">
       {keys.length != 0 ? (
@@ -69,17 +74,19 @@ function Card_page() {
       ) : (
         <Empty message="No Items Found" />
       )}
+      {keys.length != 0 ? (
+        <div className={``}>
+          <button
+            onClick={() => {
+              setvisible_checkout("visible");
+            }}
+            className={`text-white border p-2 rounded-full  hover:bg-slate-600`}
+          >
+            checkout
+          </button>
+        </div>
+      ) : null}
 
-      <div className={``}>
-        <button
-          onClick={() => {
-            setvisible_checkout("visible");
-          }}
-          className={`text-white border p-2 rounded-full  hover:bg-slate-600`}
-        >
-          checkout
-        </button>
-      </div>
       <div
         className={`${visible_checkout} z-10 w-full h-full top-0 bg-slate-300 bg-opacity-75 fixed flex  justify-center items-center`}
       >
@@ -97,10 +104,7 @@ function Card_page() {
           <div>
             <button
               onClick={() => {
-                dis(post_user_checkoutslice(total));
-                dis(order_complete_from_user_checkoutslice());
-                dis(order_complete_from_card_sclice());
-                nav("/");
+                handleclick();
               }}
               className="text-white border p-2 rounded-full  hover:bg-slate-600"
             >
@@ -119,6 +123,8 @@ function Card_page() {
           </div>
         </div>
       </div>
+
+      <ToastContainer />
     </div>
   );
 }

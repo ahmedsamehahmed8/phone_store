@@ -1,20 +1,17 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { Await } from "react-router-dom";
+import Tbrands from "src/types/Tbrands";
 
-type tt = {
-  brands: {
-    id: number;
-    name: string;
-    photo: string;
-  }[];
+type T = {
+  brands: Tbrands;
 };
 
 const brandsapi = createAsyncThunk("brand/brandsapi", async (_, thunk) => {
   const { rejectWithValue } = thunk;
   try {
     const response = await axios
-      .get<tt>("http://localhost:3000/Brands")
+      .get<T>("http://localhost:3000/Brands")
       .then((e) => e.data);
     return response;
   } catch (error) {

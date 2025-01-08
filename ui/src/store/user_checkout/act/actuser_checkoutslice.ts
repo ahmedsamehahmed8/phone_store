@@ -32,11 +32,3 @@ const post_user_checkoutslice = createAsyncThunk(
 );
 
 export default post_user_checkoutslice;
-
-// id: number;
-// name: string;
-// brand: string;
-// instok: number;
-// price: number;
-// quantity: number;
-// photo: string;

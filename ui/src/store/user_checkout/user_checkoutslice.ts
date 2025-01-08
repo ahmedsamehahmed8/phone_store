@@ -1,13 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import post_user_checkoutslice from "./act/actuser_checkoutslice";
+import Tloading from "src/types/Tloading";
 
-type tt = {
-  loading: "pending" | "success" | "failure" | "idle";
+type T = {
+  loading: Tloading;
   error: string | null;
   complete: boolean;
 };
 
-const initialState: tt = {
+const initialState: T = {
   loading: "idle",
   error: null,
   complete: false,
@@ -31,7 +32,7 @@ const user_checkoutslice = createSlice({
     });
     builder.addCase(post_user_checkoutslice.rejected, (state, action) => {
       state.loading = "pending";
-      state.error = action.payload;
+      state.error = action.payload as string;
     });
     builder.addCase(post_user_checkoutslice.pending, (state) => {
       state.loading = "pending";

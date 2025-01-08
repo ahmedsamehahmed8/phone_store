@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { increase, decrease, delete_item } from "../../store/card/Cardsclice";
-import { useAppDispatch, useAppSelector } from "../../store/hook/hook";
-function Card({ quantity, name, brand, photo, id }) {
-  // type tt = { item_id: { [key: string]: number } };
-
+import { useAppDispatch } from "../../store/hook/hook";
+import Tproduct from "src/types/Tproduct";
+function Card({ quantity, name, brand, photo, id }: Tproduct) {
   const dis = useAppDispatch();
-  const quantitySelector = useAppSelector((state) => state.card.item_id);
   const handle_increase = () => {
     dis(increase(id));
   };

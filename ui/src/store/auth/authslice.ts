@@ -1,17 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 import rauth from "./act/actrauth";
 import lauth from "./act/actlauth";
+import Tloading from "src/types/Tloading";
+import Tuser from "src/types/Tuser";
 
-type a = {
-  lodding: string;
+type T = {
+  lodding: Tloading;
   error: string | null;
   accessToken: string | null;
-  user: object;
+  user: Tuser;
   new_user: boolean;
 };
 
-const initialState: a = {
-  lodding: "idel",
+const initialState: T = {
+  lodding: "idle",
   error: null,
   user: {},
   accessToken: null,
@@ -32,26 +34,26 @@ const authslice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(rauth.fulfilled, (state) => {
-      state.lodding = "sucssed";
+      state.lodding = "success";
       state.new_user = true;
     });
     builder.addCase(rauth.pending, (state) => {
       state.lodding = "pending";
     });
     builder.addCase(rauth.rejected, (state) => {
-      state.lodding = "failed";
+      state.lodding = "failure";
     });
 
     builder.addCase(lauth.fulfilled, (state, action) => {
-      state.lodding = "sucssed";
+      state.lodding = "success";
       state.accessToken = action.payload.accessToken;
       state.user = action.payload.user;
       state.new_user = false;
       state.error = null;
     });
     builder.addCase(lauth.rejected, (state, action) => {
-      state.lodding = "failed";
-      state.error = action.payload;
+      state.lodding = "failure";
+      state.error = action.payload as string;
     });
     builder.addCase(lauth.pending, (state) => {
       state.lodding = "pending";

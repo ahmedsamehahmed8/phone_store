@@ -19,12 +19,6 @@ function Signup() {
         .string()
         .min(3, { message: "username must be at least 3 characters" })
         .email({ message: "email not email" }),
-      //   age: z
-      //     .number({
-      //       required_error: "Age is required",
-      //       invalid_type_error: "Age must be a number",
-      //     })
-      //     .int(),
       age: z.string().max(2, { message: "you are too old " }),
       password: z
         .string()
@@ -75,62 +69,62 @@ function Signup() {
     return <Navigate to="/" />;
   }
 
-  // console.log(isaval);
-  // console.log(username);
-  // axios.post("http://localhost:3000/users", s);
-  // console.log(s);
-
   return (
     <div className="flex flex-col items-center bg-slate-500 w-screen">
-      <form action="" onSubmit={handleSubmit(handlesub)}>
-        <div className="flex flex-col">
-          <label htmlFor="email">email</label>
-          <input
-            {...register("email")}
-            onBlur={emailOnBlurHandler}
-            type="text"
-            id="email"
-            name="email"
-          />
-          <div className="text-red-700">
-            {isaval === "notavilable" ? "this email is used " : null}
-            <div className="text-red-700">{errors.email?.message}</div>
+      <div className=" border-4 rounded-2xl p-6 m-6 flex flex-col items-center">
+        <h1 className="text-white text-4xl font-bold">Sign up</h1>
+        <form action="" onSubmit={handleSubmit(handlesub)}>
+          <div className="flex flex-col">
+            <label htmlFor="email">email</label>
+            <input
+              {...register("email")}
+              onBlur={emailOnBlurHandler}
+              type="text"
+              id="email"
+              name="email"
+            />
+            <div className="text-red-700">
+              {isaval === "notavilable" ? "this email is used " : null}
+              <div className="text-red-700">{errors.email?.message}</div>
+            </div>
           </div>
-        </div>
-        <div className="flex flex-col">
-          <label htmlFor="age">age</label>
-          <input {...register("age")} type="number" id="age" name="age" />
-          <div className="text-red-700">{errors.age?.message}</div>
-        </div>
-        <div className="flex flex-col w-[300px]">
-          <label htmlFor="password">password</label>
-          <input
-            {...register("password")}
-            type="password"
-            id="password"
-            name="password"
-          />
-          <div className="text-red-700 ">{errors.password?.message}</div>
-        </div>
-        <div className="flex flex-col">
-          <label htmlFor="confirm_password">confirm password</label>
-          <input
-            {...register("confirm_password")}
-            type="password"
-            id="confirm_password"
-            name="confirm_password"
-          />
-          <div className="text-red-700">{errors.confirm_password?.message}</div>
-        </div>
-        <div className=" flex justify-center p-3">
-          <button
-            className="bg-emerald-600  rounded-full ps-2 pe-2 p-1 font-bold hover:bg-emerald-800"
-            type="submit"
-          >
-            Sgin up
-          </button>
-        </div>
-      </form>
+          <div className="flex flex-col">
+            <label htmlFor="age">age</label>
+            <input {...register("age")} type="number" id="age" name="age" />
+            <div className="text-red-700">{errors.age?.message}</div>
+          </div>
+          <div className="flex flex-col w-[300px]">
+            <label htmlFor="password">password</label>
+            <input
+              {...register("password")}
+              type="password"
+              id="password"
+              name="password"
+            />
+            <div className="text-red-700 ">{errors.password?.message}</div>
+          </div>
+          <div className="flex flex-col">
+            <label htmlFor="confirm_password">confirm password</label>
+            <input
+              {...register("confirm_password")}
+              type="password"
+              id="confirm_password"
+              name="confirm_password"
+            />
+            <div className="text-red-700">
+              {errors.confirm_password?.message}
+            </div>
+          </div>
+          <div className=" flex justify-center p-3">
+            <button
+              className="bg-emerald-600  rounded-full ps-2 pe-2 p-1 font-bold hover:bg-emerald-800"
+              type="submit"
+            >
+              Sgin up
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

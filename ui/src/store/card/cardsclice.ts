@@ -1,20 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { build } from "vite";
 import itemsfullinfo from "./act/itemsfullinfo";
-import { useAppSelector } from "../hook/hook";
+import Tproducts from "src/types/Tproduct_Slice";
+import Tloading from "src/types/Tloading";
+import T_ID_items from "src/types/T_ID_items";
 
 type TT = {
-  item_id: { [key: string]: number };
-  item_info: {
-    id: number;
-    name: string;
-    brand: string;
-    instok: number;
-    price: number;
-    quantity: number;
-    photo: string;
-  }[];
-  loading: "idle" | "pending" | "succeeded" | "failed";
+  item_id: T_ID_items;
+  item_info: Tproducts;
+  loading: Tloading;
   error: string | null;
 };
 
@@ -73,11 +66,11 @@ const cartslice = createSlice({
     });
     builder.addCase(itemsfullinfo.fulfilled, (state, action) => {
       state.item_info = action.payload;
-      state.loading = "succeeded";
+      state.loading = "success";
       state.error = null;
     });
     builder.addCase(itemsfullinfo.rejected, (state) => {
-      state.loading = "failed";
+      state.loading = "failure";
       state.error = "action.error.message";
       state.item_info = [];
     });

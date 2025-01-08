@@ -1,11 +1,10 @@
 import { useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "src/store/hook/hook";
-import Loading from "@compontes/common/ainmation/Loading";
 import productapi from "src/store/products/act/actproductsslice";
 import { reset_complete_from_user_checkoutslice } from "src/store/user_checkout/user_checkoutslice";
 import Categores from "@compontes/e-com/Categores";
-import { brands } from "@fortawesome/fontawesome-svg-core/import.macro";
-
+import Lottie from "lottie-react";
+import loading_animation from "../../lottiefiles/loading.json";
 function BBrand() {
   const dispatch = useAppDispatch();
 
@@ -22,9 +21,17 @@ function BBrand() {
   });
 
   return (
-    <>
-      <div className="flex flex-wrap gap-14 p-5">{l}</div>
-    </>
+    <div className=" w-full bg-slate-500 flex flex-wrap justify-center">
+      {loading === "pending" ? (
+        <div className="">
+          <Lottie animationData={loading_animation} />
+        </div>
+      ) : (
+        <div className="flex justify-center flex-wrap gap-14 p-5 text-white">
+          {l}
+        </div>
+      )}
+    </div>
   );
 }
 
