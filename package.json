@@ -4,9 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "server" :"json-server-auth db.json --watch --port:3001" ,
-    "dev": "vite",
-    "all" : "concurrently \"npm run dev\" \"npm run server\"",
+
+    "dev" : "concurrently \"vite\" \"json-server-auth db.json --watch --port:3001\"",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
