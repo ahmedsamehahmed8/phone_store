@@ -1,5 +1,20 @@
 # React + TypeScript + Vite
 
+![screenshot](phone-store/1.png)
+![screenshot](phone-store/2.png)
+![screenshot](phone-store/3.png)
+![screenshot](phone-store/4.png)
+![screenshot](phone-store/5.png)
+![screenshot](phone-store/6.png)
+![screenshot](phone-store/7.png)
+![screenshot](phone-store/8.png)
+![screenshot](phone-store/9.png)
+![screenshot](phone-store/10.png)
+![screenshot](phone-store/11.png)
+![screenshot](phone-store/12.png)
+![screenshot](phone-store/13.png)
+![screenshot](phone-store/14.png)
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
@@ -18,11 +33,11 @@ export default tseslint.config({
   languageOptions: {
     // other options...
     parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
       tsconfigRootDir: import.meta.dirname,
     },
   },
-})
+});
 ```
 
 - Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
@@ -31,11 +46,11 @@ export default tseslint.config({
 
 ```js
 // eslint.config.js
-import react from 'eslint-plugin-react'
+import react from "eslint-plugin-react";
 
 export default tseslint.config({
   // Set the react version
-  settings: { react: { version: '18.3' } },
+  settings: { react: { version: "18.3" } },
   plugins: {
     // Add the react plugin
     react,
@@ -44,7 +59,7 @@ export default tseslint.config({
     // other rules...
     // Enable its recommended rules
     ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
+    ...react.configs["jsx-runtime"].rules,
   },
-})
+});
 ```
