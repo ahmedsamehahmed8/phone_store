@@ -14,6 +14,9 @@
 ![screenshot](phone-store/12.png)
 ![screenshot](phone-store/13.png)
 ![screenshot](phone-store/14.png)
+![screenshot](phone-store/15.png)
+![screenshot](phone-store/16.png)
+![screenshot](phone-store/17.png)
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
